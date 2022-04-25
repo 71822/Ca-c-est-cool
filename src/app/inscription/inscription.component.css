@@ -1,0 +1,20 @@
+section{
+    text-align: center;
+    margin: 0 auto;
+}
+
+h1{
+    text-align: center;
+    margin-top: 70px;
+}
+form{
+    text-align: center;
+}
+
+input{
+    margin: 5px;
+    width: 250px;
+    height: 35px;
+    border-radius: 10px;
+    text-align: center;
+}

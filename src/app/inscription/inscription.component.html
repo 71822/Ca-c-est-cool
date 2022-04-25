@@ -1,0 +1,13 @@
+<section>
+
+    <h1>{{title}}</h1>
+
+    <form [formGroup]="logForm" (ngSubmit)="validForm()">
+        <div><input type="text" placeholder="Avatar" formControlName="avatar"></div>
+        <div><input type="text" placeholder="Pseudo" formControlName="pseudo"></div>
+        <div><input type="text" placeholder="Email" formControlName="email"></div>
+        <div><input type="text" placeholder="Password" formControlName="password"></div>
+        <div><input type="submit" value="Ajout"></div>
+    </form>
+
+</section>

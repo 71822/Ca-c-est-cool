@@ -1,0 +1,20 @@
+<section>
+
+    <h1>{{title}}</h1>
+
+    <form [formGroup]="logForm" (ngSubmit)="validForm()">
+        <div>
+            <input type="text" placeholder="Email" formControlName="email"> 
+           
+        </div>
+        <div>
+            <input type="text" placeholder="Password" formControlName="password">
+            
+        </div>
+        <div>
+            <input type="submit" value="Connexion">
+        </div>
+    </form>
+
+</section>
+  <!-- [(ngModel)]="email" [(ngModel)]="password"  -->
