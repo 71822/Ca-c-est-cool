@@ -1,0 +1,30 @@
+<div class="box">
+  <div class="divBoxProfil" *ngFor="let joie of user; index as i">
+
+      <div class="divPhoto">
+        <div class="boxPhoto">
+          <img class="imgProfil" src="../../assets/img/chat.jpg" alt="">
+        </div>
+        <div class="boxName">
+          <span class="nom">{{joie.prenom}}</span><span class="prenom">{{joie.nom}} </span>
+        </div>
+      </div>
+
+      <div class="unNomDeDiv">
+        <div class="unAutreNomDeDiv">
+          <div class="label">Mon mur</div>
+          <div class="label">Mes messages</div>
+          <div class="label compte" (click)="updateAccount()">Mon compte</div>
+        </div>
+        <div class="bulles">
+          <div class="bulle">1</div>
+          <div class="bulle">12</div>
+        </div>
+    </div>
+</div>
+<!--
+<button (click)="getElements()">
+  Se déconnecter
+</button>
+-->
+</div>

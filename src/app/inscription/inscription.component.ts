@@ -11,14 +11,13 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./inscription.component.css']
 })
 export class InscriptionComponent implements OnInit {
-
-  title = 'Inscription';
-
   logForm = this.formBuilder.group({
-    avatar: '',
-    pseudo: '',
+    id:1,
+    nom: '',
+    prenom: '',
     email: '',
-    password: ''
+    motPasse: '',
+    photo:''
   });
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private formModule: FormsModule) { }
@@ -27,13 +26,16 @@ export class InscriptionComponent implements OnInit {
   }
 
   validForm() {
-    // console.log(this.logForm.value)
     let data: User = {
-      avatar: this.logForm.value.avatar,
-      pseudo: this.logForm.value.pseudo,
+      id: -1,
+      nom: this.logForm.value.nom,
+      prenom: this.logForm.value.prenom,
       email: this.logForm.value.email,
-      password: this.logForm.value.password,
+      motPasse: this.logForm.value.motPasse,
+      photo: this.logForm.value.photo,
     }
+    console.log(data);
+
 
     let that = this
     this.userService.inscriptionUser(data).subscribe({

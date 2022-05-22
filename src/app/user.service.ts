@@ -1,76 +1,116 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { catchError, tap, throwError } from 'rxjs';
+import { catchError, Observable, tap, map, throwError, of, Subject } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
-import { Login } from './login';
 import { AuthentificationService } from './authentification.service';
-import { FormsModule } from '@angular/forms';
+import { Users } from './classes/user';
+import { Post } from './post';
+import { Posts } from './classes/post';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 
 export class UserService {
+  users: Users[];
+  posts: Posts[];
+  token:string ="";
+  // currentUserId:number = -1;
 
-    urlBase = "https://reseau.jdedev.fr/api/user"
-    httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        })
-    };
-    httpOptionsToken = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': `bearer ${this.authentificationService.tokenValue()}`
-        })
-    };
+  urlBase = "http://localhost:3000/api"
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
-    constructor(private http: HttpClient, private authentificationService: AuthentificationService) { }
 
-    connection(login: Login) {
-        return this.http.post(this.urlBase + "/connect", login, this.httpOptions)
-            .pipe(
-                catchError(this.handleError)
-            )
+  constructor(private http: HttpClient, private authentificationService: AuthentificationService) { }
+
+  // isCurrentUserId(id:number):boolean{
+  //   return this.currentUserId == id;
+  // }
+
+
+  connection(data: User) {
+    return this.http.post(this.urlBase + "/signin", data, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  inscriptionUser(data: User) {
+    return this.http.post(this.urlBase + '/signup', data, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  deleteCompte(id:number):Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+    return this.http.delete(this.urlBase + "user/" + id, {headers:headers});
+  }
+
+  updateAccount(upUser:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+    return this.http.put(this.urlBase + "user/" + upUser.id, upUser, {headers:headers});
+  }
+
+  getArticle(id:number):Observable<any>{
+    console.log('FONCTION GETARTICLE : ' + id);
+      return this.http.get(this.urlBase + "/article/"+id);
+  }
+
+
+  getPosts(): Observable<Array<Posts>>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authentificationService.tokenValue()}`
+    })
+    return this.http.get<Array<Posts>>(this.urlBase + '/multiplePosts', {headers:headers});
+  }
+
+  getPost(id:number):Observable<any>{
+    console.log('FONCTION GETPOST : ' + id);
+      return this.http.get(this.urlBase + "/post/"+id);
+  }
+
+
+  getUsers(): Observable<Array<User>> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authentificationService.tokenValue()}`
+    })
+    return this.http.get<Array<User>>(this.urlBase + '/multipleMembre', {headers:headers});
+  }
+
+  getUser(id:number):Observable<any>{
+  console.log('FONCTION GETUSER : ' + id);
+    return this.http.get(this.urlBase + "/membre/"+id);
+  }
+
+  
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
     }
+    // Return an observable with a user-facing error message.
+    return throwError(() => {
+      error.error.mess || error.error;
 
-    inscriptionUser(inscription: User) {
-        return this.http.post(this.urlBase, inscription, this.httpOptions)
-            .pipe(
-                catchError(this.handleError)
-            )
-    }
-
-
-    getUserList() {
-        let that = this
-        return this.http.get(this.urlBase, this.httpOptionsToken).pipe(
-            //tap((userList) => console.table(userList)),
-            catchError(error => this.handleError(error))
-        );
-    }
-
-
-    // private log(response: any) {
-    //     console.table(response);
-    // }
-
-
-    private handleError(error: HttpErrorResponse) {
-        if (error.status === 0) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error);
-        } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong.
-            console.error(
-                `Backend returned code ${error.status}, body was: `, error.error);
-        }
-        // Return an observable with a user-facing error message.
-        return throwError(() => {
-            error.error.mess || error.error;
-
-        })
-    }
+    })
+  }
 
 }

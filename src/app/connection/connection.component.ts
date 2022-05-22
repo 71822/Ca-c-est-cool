@@ -12,43 +12,48 @@ import { AuthentificationService } from '../authentification.service';
 })
 
 export class ConnectionComponent implements OnInit {
-
-  title = 'Connexion';
-
   logForm = this.formBuilder.group({
     email: '',
-    password: ''
+    motPasse: ''
   });
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private authentificationService: AuthentificationService) { }
 
+  ret?: any;
 
   ngOnInit(): void {
-    
+
   }
 
   validForm() {
     let data: Login = {
       email: this.logForm.value.email,
-      password: this.logForm.value.password,
+      motPasse: this.logForm.value.motPasse,
     }
 
     let that = this
     this.userService.connection(data).subscribe({
       next(ret: any) {
 
-        that.router.navigate(['/user']);
-        for (const property in ret) {
-          if (property == 'token') {
-            localStorage.setItem('ACCESS_TOKEN', ret[property]);
-            console.log(ret[property])
+          if (ret.message.pass == true) {
+            localStorage.removeItem('ID');
+            localStorage.setItem('ACCESS_TOKEN', ret.message.token);
+            localStorage.setItem('id', ret.message.id);
+            that.router.navigate([`/user/${ret.message.id}`]);
+
+
+            this.loginService.token = ret.message.token;
+            this.loginService.currentUserId = ret.message.id;
+
+          }else if(ret.message.pass == false){
+            console.log(ret.message);
           }
-        };
       },
       error(err) {
         alert(err);
       }
     })
   }
+
 
 }

@@ -1,6 +1,8 @@
 export interface User {
-    avatar: string;
-    pseudo: string;
-    email: string;
-    password: string;
+    id?: number;
+    nom?: string;
+    prenom?: string;
+    email?: string;
+    motPasse?: string;
+    photo?: string;
 }

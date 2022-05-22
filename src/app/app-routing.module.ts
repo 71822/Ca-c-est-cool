@@ -4,19 +4,17 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { ConnectionComponent } from './connection/connection.component';
 import { UserComponent } from './user/user.component';
 import { AuthentificationGuard } from './authentification.guard';
-
+import { UpdateAccountComponent } from './update-account/update-account.component';
 
 const routes: Routes = [
-  
+
   { path: "", component: Component },
   { path: "inscription", component: InscriptionComponent },
   { path: "connection", component: ConnectionComponent },
-  { path: "user", component: UserComponent, canActivate:[AuthentificationGuard] },
+  { path: "user/:id", component: UserComponent, canActivate:[AuthentificationGuard]},
+  { path: "user/updateAccount/:id", component: UpdateAccountComponent, canActivate:[AuthentificationGuard]}
 
   // {path:'home', component:HomeComponent, canActivate:[AuthGuardService]},
-  // {path:'detail/:id', component:DetailComponent},
-  // {path: 'register', component: RegisterComponent},
-  // {path:'login', component: LoginComponent},
   // {path:'', redirectTo:'login', pathMatch: 'full'},
 
 

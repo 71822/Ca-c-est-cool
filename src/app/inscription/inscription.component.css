@@ -1,20 +1,35 @@
-section{
-    text-align: center;
-    margin: 0 auto;
+.section {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background: rgb(229, 229, 229);
+  min-height: 100vh;
+  width: 100%;
 }
 
-h1{
-    text-align: center;
-    margin-top: 70px;
-}
-form{
-    text-align: center;
+.img {
+  width: 250px;
+  padding: 70px 0;
 }
 
-input{
-    margin: 5px;
-    width: 250px;
-    height: 35px;
-    border-radius: 10px;
-    text-align: center;
+form {
+  text-align: center;
+}
+
+input {
+  margin: 10px;
+  width: 300px;
+  height: 30px;
+  border-radius: 20px;
+  border-color: rgb(252, 252, 253);
+  padding-left: 10px;
+}
+
+.submit {
+  background: #3d8cff;
+  height: 35px;
+  width: 200px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
 }

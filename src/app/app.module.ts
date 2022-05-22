@@ -4,20 +4,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EnteteComponent } from './entete/entete.component';
-import { PiedComponent } from './pied/pied.component';
 import { ConnectionComponent } from './connection/connection.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfilComponent } from './profil/profil.component';
+import { MurComponent } from './mur/mur.component';
+import { ArticleComponent } from './article/article.component';
+import { UserComponent } from './user/user.component';
+import { UpdateAccountComponent } from './update-account/update-account.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    EnteteComponent,
-    PiedComponent,
     ConnectionComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    ProfilComponent,
+    MurComponent,
+    ArticleComponent,
+    UserComponent,
+    UpdateAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [],//ProfilComponent
   bootstrap: [AppComponent]
 
 })

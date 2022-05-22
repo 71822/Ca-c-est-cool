@@ -1,0 +1,14 @@
+<div class="section">
+  <img class="img" src="../../assets/img/logo.PNG" alt="">
+
+    <form [formGroup]="updateAccount" (ngSubmit)="validForm">
+      <div><input type="text"  placeholder="Nom" formControlName="nom"></div>
+      <div><input type="text" placeholder="Prenom" formControlName="prenom"></div>
+      <div><input type="text" placeholder="Email" formControlName="email"></div>
+      <div><input type="text" placeholder="Password" formControlName="motPasse"></div>
+      <div><input type="text" placeholder="photo" formControlName="photo"></div>
+      <div><input class="submit" type="submit" value="Modifier"></div>
+    </form>
+
+    <div class="click" (click)="retourCompte()">Mon compte</div><br>
+    <div class="click" (click)="retourCompte()">Supprimer</div><br>
