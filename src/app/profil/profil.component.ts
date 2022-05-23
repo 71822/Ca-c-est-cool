@@ -24,6 +24,7 @@ export class ProfilComponent implements OnInit {
       }
     });
 
+
     this.userService.getUser(that.idAcharger).subscribe({
       next(ret) {
         let data;
@@ -34,6 +35,17 @@ export class ProfilComponent implements OnInit {
       },
       error(err){
         console.log(err);
+      }
+    });
+  }
+
+  idPathUser(){
+    let that = this;
+    this.route.params.subscribe({
+      next(val) {
+        that.idAcharger = parseInt(val["id"])
+        let id = that.idAcharger;
+        return id;
       }
     });
   }
@@ -51,5 +63,15 @@ export class ProfilComponent implements OnInit {
       }
     });
     this.router.navigate([`/user/updateAccount/${that.idAcharger}`]);
+  }
+
+  addPost(){
+    let that = this;
+    this.route.params.subscribe({
+      next(val) {
+        that.idAcharger = parseInt(val["id"])
+      }
+    });
+    this.router.navigate([`/user/addPost/${that.idAcharger}`]);
   }
 }

@@ -1,0 +1,14 @@
+<div class="section">
+  <img class="img" src="../../assets/img/logo.PNG" alt="">
+    <h3 class="titre">Ajouter un article</h3>
+    <form [formGroup]="postForm" (ngSubmit)="validForm()">
+      <div><input type="text" placeholder="Titre" formControlName="title"></div>
+      <div><input type="text" placeholder="Text" formControlName="contenu"></div>
+      <div><input type="text" placeholder="Image" formControlName="imagePost"></div>
+      <div><input class="submit" type="submit" value="Soumettre"></div>
+    </form><br>
+    
+    <div class="click" (click)="retourCompte()">Mon compte</div><br>
+</div>
+
+

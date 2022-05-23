@@ -5,6 +5,7 @@ import { ConnectionComponent } from './connection/connection.component';
 import { UserComponent } from './user/user.component';
 import { AuthentificationGuard } from './authentification.guard';
 import { UpdateAccountComponent } from './update-account/update-account.component';
+import { AddPostComponent } from './add-post/add-post.component';
 
 const routes: Routes = [
 
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: "inscription", component: InscriptionComponent },
   { path: "connection", component: ConnectionComponent },
   { path: "user/:id", component: UserComponent, canActivate:[AuthentificationGuard]},
-  { path: "user/updateAccount/:id", component: UpdateAccountComponent, canActivate:[AuthentificationGuard]}
+  { path: "user/updateAccount/:id", component: UpdateAccountComponent, canActivate:[AuthentificationGuard]},
+  { path: "user/addPost/:id", component: AddPostComponent, canActivate:[AuthentificationGuard]}
 
   // {path:'home', component:HomeComponent, canActivate:[AuthGuardService]},
   // {path:'', redirectTo:'login', pathMatch: 'full'},

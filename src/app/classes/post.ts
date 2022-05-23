@@ -1,4 +1,5 @@
 export class Posts {
+
   constructor(
     public id?: number,
     public title?: string,
@@ -6,6 +7,7 @@ export class Posts {
     public pouce?: number,
     public imagePost?: string,
     public createdAt?: Date,
-    public id_1?: string,
+    public id_1?: number,
   ){}
+
 }

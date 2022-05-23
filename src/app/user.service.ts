@@ -46,6 +46,17 @@ export class UserService {
       )
   }
 
+  addPost(data: Posts) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authentificationService.tokenValue()}`
+    })
+    return this.http.post(this.urlBase + '/createPost', data, {headers:headers})
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
   deleteCompte(id:number):Observable<any>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -95,7 +106,7 @@ export class UserService {
     return this.http.get(this.urlBase + "/membre/"+id);
   }
 
-  
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.

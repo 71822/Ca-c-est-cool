@@ -36,7 +36,6 @@ export class InscriptionComponent implements OnInit {
     }
     console.log(data);
 
-
     let that = this
     this.userService.inscriptionUser(data).subscribe({
       next(ret) {
@@ -46,7 +45,6 @@ export class InscriptionComponent implements OnInit {
         alert(err);
       }
     })
-
   }
 
 }

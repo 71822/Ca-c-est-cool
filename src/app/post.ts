@@ -4,6 +4,6 @@ export interface Post {
     contenu?: string;
     pouce?: number;
     imagePost?: string;
-    createdAt?: Date;
-    id_1?: string;
+    createdAt: Date;
+    id_1?: number;
 }

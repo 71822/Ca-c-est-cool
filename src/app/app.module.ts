@@ -12,6 +12,7 @@ import { MurComponent } from './mur/mur.component';
 import { ArticleComponent } from './article/article.component';
 import { UserComponent } from './user/user.component';
 import { UpdateAccountComponent } from './update-account/update-account.component';
+import { AddPostComponent } from './add-post/add-post.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { UpdateAccountComponent } from './update-account/update-account.componen
     MurComponent,
     ArticleComponent,
     UserComponent,
-    UpdateAccountComponent
+    UpdateAccountComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
