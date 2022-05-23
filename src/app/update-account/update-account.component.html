@@ -3,13 +3,21 @@
 
     <h3 class="titre">Modifier mon profil</h3>
     <form [formGroup]="updateAccount" (ngSubmit)="validForm">
-      <div><input type="text"  placeholder="Nom" formControlName="nom"></div>
-      <div><input type="text" placeholder="Prenom" formControlName="prenom"></div>
-      <div><input type="text" placeholder="Email" formControlName="email"></div>
-      <div><input type="text" placeholder="Password" formControlName="motPasse"></div>
-      <div><input type="text" placeholder="photo" formControlName="photo"></div>
-      <div><input class="submit" type="submit" value="Modifier"></div>
+      <div *ngFor="let value of user">
+        <div>
+          <div><input type="text" [value]="value.nom"  placeholder="Nom" [formControlName]="nom"></div>
+          <div><input type="text" [value]="value.prenom" placeholder="Prenom" formControlName="value.prenom"></div>
+          <div><input type="text" [value]="value.email" placeholder="Email" formControlName="value.email"></div>
+          <div><input type="text" [value]="value.motPasse" placeholder="Password" formControlName="value.motPasse"></div>
+          <div><input type="text" [value]="value.photo" placeholder="photo" formControlName="value.photo"></div>
+          <div><input class="submit" type="submit" value="Modifier"></div>
+        </div>
+      </div>
     </form>
 
     <div class="click" (click)="retourCompte()">Mon compte</div><br>
-    <div class="click" (click)="retourCompte()">Supprimer</div><br>
+
+    <!---->
+
+
+</div>

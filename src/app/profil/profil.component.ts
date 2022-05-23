@@ -11,6 +11,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
+  //id:number = localStorage["id"];
   idAcharger: number = 0;
   users: Array<User> = [];
   user: Array<User> = [];
@@ -39,18 +40,6 @@ export class ProfilComponent implements OnInit {
     });
   }
 
-  idPathUser(){
-    let that = this;
-    this.route.params.subscribe({
-      next(val) {
-        that.idAcharger = parseInt(val["id"])
-        let id = that.idAcharger;
-        return id;
-      }
-    });
-  }
-
-
   ngOnInit(): void {
   }
 
@@ -74,4 +63,14 @@ export class ProfilComponent implements OnInit {
     });
     this.router.navigate([`/user/addPost/${that.idAcharger}`]);
   }
+
+  logout(){
+    this.auth.seDeconnecter();
+  }
+
+
+    delete(idAcharger){
+    console.log(idAcharger);
+        this.userService.deleteCompte(idAcharger).subscribe(retour => {this.router.navigate(["/inscription"]);});
+    }
 }

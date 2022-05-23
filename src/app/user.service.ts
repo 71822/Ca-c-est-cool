@@ -57,6 +57,14 @@ export class UserService {
       )
   }
 
+  updatePost(updatePostData:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+    return this.http.put(this.urlBase + "updatePost/" + updatePostData.id, updatePostData.pouce, {headers:headers});
+  }
+
   deleteCompte(id:number):Observable<any>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -66,6 +74,9 @@ export class UserService {
   }
 
   updateAccount(upUser:any):Observable<any>{
+    console.log(upUser);
+    console.log(upUser.id);
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.token}`

@@ -45,4 +45,24 @@ export class MurComponent implements OnInit {
   changementDePage = function () {
     this.router.navigate(['/user/']);
  };
+
+
+ /////////////////A FINIR
+ functionClick(){
+  let that = this;
+  let idPage = 0;
+  this.route.params.subscribe({
+    next(val) {
+      that.idAcharger = parseInt(val["id"])
+      idPage = that.idAcharger;
+    }
+  });
+
+   if(idPage == localStorage["id"]){
+    console.log(idPage);
+    let clickNo = true;
+   }else if(idPage != localStorage["id"]){
+     //this.auth.updatePost();
+   }
+ }
 }

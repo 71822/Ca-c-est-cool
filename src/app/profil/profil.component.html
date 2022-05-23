@@ -1,4 +1,9 @@
 <div class="box">
+
+  <button (click)="logout()">
+    Se déconnecter
+  </button>
+
   <div class="divBoxProfil" *ngFor="let joie of user; index as i">
 
       <div class="divPhoto">
@@ -15,6 +20,7 @@
           <div class="label cursor" (click)="addPost()">Mon mur</div>
           <div class="label cursor">Mes messages</div>
           <div class="label cursor" (click)="updateAccount()">Mon compte</div>
+          <div class="cursor" (click)="delete()">Supprimer mon compte</div>
         </div>
         <div class="bulles">
           <div class="bulle">1</div>
@@ -22,9 +28,5 @@
         </div>
     </div>
 </div>
-<!--
-<button (click)="getElements()">
-  Se déconnecter
-</button>
--->
+
 </div>

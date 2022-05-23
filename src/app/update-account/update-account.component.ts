@@ -11,6 +11,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./update-account.component.css']
 })
 export class UpdateAccountComponent implements OnInit {
+  id = localStorage["id"];
   idPage:number= 0;
   idAcharger: number = 0;
   updateAccount: FormGroup;
@@ -94,7 +95,20 @@ export class UpdateAccountComponent implements OnInit {
     this.router.navigate([`/user/${idPage}`])
   }
 
-  delete(idPage){
-    this.userService.deleteCompte(idPage).subscribe(retour => {this.router.navigate(["/inscription"]);});
-  }
+
+
+//   delete(id){
+//     let that = this;
+//     let idPage = 0;
+//     this.route.params.subscribe({
+//       next(val) {
+//         that.idAcharger = parseInt(val["id"])
+//         idPage = that.idAcharger;
+//       }
+//     });
+
+//      if(idPage == id){
+//       this.userService.deleteCompte(id).subscribe(retour => {this.router.navigate(["/inscription"]);});
+//     }
+// }
 }
