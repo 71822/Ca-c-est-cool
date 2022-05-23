@@ -32,6 +32,28 @@ export class UpdateAccountComponent implements OnInit {
       motPasse: "" as string,
       photo: "" as string,
     });
+
+    let that = this;
+    this.route.params.subscribe({
+      next(val) {
+        that.idAcharger = parseInt(val["id"])
+      }
+    });
+
+
+    this.userService.getUser(that.idAcharger).subscribe({
+      next(ret) {
+        let data;
+        for(let use of Object.keys(ret)){
+          data = ret[use];
+        }
+        that.user = data;
+      },
+      error(err){
+        console.log(err);
+      }
+    });
+  
    }
 
 
