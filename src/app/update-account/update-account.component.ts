@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Users } from '../classes/user';
-import { User } from '../user';
 import { UserService } from '../user.service';
 
 @Component({
@@ -10,7 +9,9 @@ import { UserService } from '../user.service';
   templateUrl: './update-account.component.html',
   styleUrls: ['./update-account.component.css']
 })
+
 export class UpdateAccountComponent implements OnInit {
+  prenom="";
   id = localStorage["id"];
   idPage:number= 0;
   idAcharger: number = 0;
@@ -40,7 +41,6 @@ export class UpdateAccountComponent implements OnInit {
       }
     });
 
-
     this.userService.getUser(that.idAcharger).subscribe({
       next(ret) {
         let data;
@@ -53,11 +53,12 @@ export class UpdateAccountComponent implements OnInit {
         console.log(err);
       }
     });
-  
-   }
+  }
 
 
-   validForm() {
+
+
+  validForm() {
     let dataUpdate: Users = {
       nom: this.updateAccount.value.nom,
       prenom: this.updateAccount.value.prenom,
@@ -65,18 +66,28 @@ export class UpdateAccountComponent implements OnInit {
       motPasse: this.updateAccount.value.motPasse,
       photo: this.updateAccount.value.photo,
       id: this.idAcharger
-  };
-  this.userService.updateAccount(dataUpdate).
-  subscribe(retour => {
+    };
+
+    console.log(dataUpdate);
+
     let that = this;
-    let idPage = 0;
     this.route.params.subscribe({
       next(val) {
         that.idAcharger = parseInt(val["id"])
-        idPage = that.idAcharger;
+        console.log(that.idAcharger);
       }
     });
-    this.router.navigate([`/user/${idPage}`]);});
+    this.userService.updateAccount(that.idAcharger, dataUpdate).
+    subscribe(retour => {
+      let that = this;
+      let idPage = 0;
+      this.route.params.subscribe({
+        next(val) {
+          that.idAcharger = parseInt(val["id"])
+          idPage = that.idAcharger;
+        }
+      });
+      this.router.navigate([`/user/${idPage}`]);});
   }
 
   ngOnInit(): void {
@@ -89,14 +100,18 @@ export class UpdateAccountComponent implements OnInit {
     this.userService.getUser(this.idAcharger).subscribe({
       next(ret) {
         console.log(ret);
-        that.user = ret;
-        that.updateAccount.setValue({
+        let data="";
+        let that=this;
+        for(let use of Object.keys(ret)){
+          data = ret[use];
+        }
+        that.user = data;
+        that.updateAccount.sethValue({
           nom:that.user.nom,
           prenom:that.user.prenom,
           email:that.user.email,
           motPasse:that.user.motPasse,
-          photo:that.user.photo,
-
+          photo:that.user.photo
         })
       },
       error(err){
@@ -118,19 +133,8 @@ export class UpdateAccountComponent implements OnInit {
   }
 
 
-
-//   delete(id){
-//     let that = this;
-//     let idPage = 0;
-//     this.route.params.subscribe({
-//       next(val) {
-//         that.idAcharger = parseInt(val["id"])
-//         idPage = that.idAcharger;
-//       }
-//     });
-
-//      if(idPage == id){
-//       this.userService.deleteCompte(id).subscribe(retour => {this.router.navigate(["/inscription"]);});
-//     }
-// }
 }
+
+
+
+

@@ -5,7 +5,6 @@ const auth = require('../services/auth');
 
 /* POST create member */
 router.post('/signup', async function (req, res, next) {
-
   try {
     res.json(await auth.signup(req.body));
   } catch (err) {

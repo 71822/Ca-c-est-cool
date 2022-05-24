@@ -57,31 +57,31 @@ export class UserService {
       )
   }
 
-  updatePost(updatePostData:any):Observable<any>{
+  updatePost(id, updatePostData:any):Observable<any>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.token}`
     })
-    return this.http.put(this.urlBase + "updatePost/" + updatePostData.id, updatePostData.pouce, {headers:headers});
+    return this.http.put(this.urlBase + "/updatePost/" + id, updatePostData.pouce, {headers:headers});
   }
 
   deleteCompte(id:number):Observable<any>{
+    console.log('deleteCompte id : ' + id);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.token}`
     })
-    return this.http.delete(this.urlBase + "user/" + id, {headers:headers});
+    return this.http.delete(this.urlBase + "/membreDelete/" + id, {headers:headers});
   }
 
-  updateAccount(upUser:any):Observable<any>{
-    console.log(upUser);
-    console.log(upUser.id);
-
+  updateAccount(id:any, data:any):Observable<any>{
+    console.log('USER-SERVICE updateAccount - upUser : '+id);
+    console.log('USER-SERVICE updateAccount - upUser.id : '+data);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.token}`
     })
-    return this.http.put(this.urlBase + "user/" + upUser.id, upUser, {headers:headers});
+    return this.http.put(this.urlBase + "/membreUpdate/" + id, data, {headers:headers});
   }
 
   getArticle(id:number):Observable<any>{

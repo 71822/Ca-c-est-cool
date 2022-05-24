@@ -38,11 +38,23 @@ export class ProfilComponent implements OnInit {
         console.log(err);
       }
     });
+
   }
 
   ngOnInit(): void {
   }
 
+  delete(){
+    let that = this;
+    this.route.params.subscribe({
+      next(val) {
+        that.idAcharger = parseInt(val["id"])
+        console.log(that.idAcharger);
+
+        that.userService.deleteCompte(that.idAcharger).subscribe(retour => {that.router.navigate(["/inscription"]);});
+      }
+    });
+  }
 
   updateAccount(){
     let that = this;
@@ -69,8 +81,5 @@ export class ProfilComponent implements OnInit {
   }
 
 
-    delete(idAcharger){
-    console.log(idAcharger);
-        this.userService.deleteCompte(idAcharger).subscribe(retour => {this.router.navigate(["/inscription"]);});
-    }
+
 }

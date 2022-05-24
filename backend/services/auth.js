@@ -9,7 +9,6 @@ require("dotenv").config();
 async function signup(membre) {
   let req = `INSERT INTO membre(nom, prenom, email, motPasse, photo) VALUES(?,?,?,?,?)`;
   let values = [membre.nom, membre.prenom, membre.email, fonction.hashPassword(membre.motPasse), membre.photo];
-
   const result = await db.query(req, values)
   let message = 'Error in creating membre';
   if (result.affectedRows) {

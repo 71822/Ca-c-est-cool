@@ -32,9 +32,11 @@ async function getMembre(id) {
 //update membre
 async function updateMembre(id, membre) {
   if(tokenVerif){
-    let req = `UPDATE membre SET nom=?, prenom=?, email=?, motPasse=?, photo=?`;
-    let values = [membre.nom, membre.prenom, membre.motPasse, membre.photo];
-    console.log(values);
+    console.log('BACK-SERVICE id :' + id);
+    console.log('BACK-SERVICE membre(data) :' + membre);
+    let req = `UPDATE membre SET nom=?, prenom=?, email=?, motPasse=?, photo=? WHERE id=?`;
+    let values = [membre.nom, membre.prenom, membre.email, membre.motPasse, membre.photo, parseInt(id)];
+    console.log('VALUES après requête : ' + values);
     const rows = await db.query(req, values);
     let message = 'Error in updating membre';
     if (result.affectedRows) {
@@ -46,11 +48,24 @@ async function updateMembre(id, membre) {
 
 //delete membre
 async function removeMembre(id) {
+  console.log('deletebackid'+id);
   if(tokenVerif){
-    const result = await db.query(`DELETE FROM membre WHERE id=${id}`);
-    let message = 'Error in deleting membre';
-    if (result.affectedRows) {
+    let req = `DELETE FROM commentaire WHERE id_1=?`;
+    let values = [id];
+    const rows = await db.query(req, values);
+    if(rows){
+      let req = `DELETE FROM poste WHERE id_1=?`;
+      let values = [id];
+      const rows = await db.query(req, values);
+    }if(rows){
+      let req = `DELETE FROM membre WHERE id=?`;
+      let values = [id];
+      const rows1 = await db.query(req, values);
       message = 'Membre deleted successfully';
+      console.log(message)
+    }else{
+      message = 'Error deleted membre';
+      console.log(message)
     }
     return { message };
   }

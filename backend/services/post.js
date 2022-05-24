@@ -8,7 +8,7 @@ async function getMultiplePosts() {
   if(tokenVerif){
     const rows = await db.query(`SELECT title, contenu, pouce, imagePost, createdAt FROM poste`);
     const data = helper.returnData(rows);
-    console.log(data);
+    //console.log(data);
     return {data}
   }
 }
@@ -23,16 +23,18 @@ async function getPost(id) {
 }
 
 //cree un post
-async function createPost(poste) {
-  const result = await db.query(
-    `INSERT INTO poste(title, contenu, pouce, imagePost, createdAt)
-    VALUES(${poste.title}, ${poste.contenu}, ${poste.pouce}, ${poste.imagePost}, ${poste.createdAt})`
-  );
-  let message = 'Error in creating post';
-  if (result.affectedRows) {
-    message = 'Post created successfully';
+async function createPost(post) {
+  if(tokenVerif){
+      let date= Date();
+      let req = `INSERT INTO poste(title, contenu, pouce, imagePost, createdAt, id_1) VALUES(?,?,?,?,?,?)`;
+      let values = [post.title, post.contenu, 0, post.imagePost, date, post.id_1];
+      const result = await db.query(req, values)
+      let message = 'Error in creating post';
+      if (result.affectedRows) {
+        message = 'Post created successfully';
+      }
+      return { message };
   }
-  return { message };
 }
 
 //update post
