@@ -6,7 +6,7 @@ const tokenVerif = require('../middlewares/auth');
 //lire la liste des posts
 async function getMultiplePosts() {
   if(tokenVerif){
-    const rows = await db.query(`SELECT title, contenu, pouce, imagePost, createdAt FROM poste`);
+    const rows = await db.query(`SELECT title, contenu, pouce, imagePost, createdAt FROM poste ORDER BY id DESC`);
     const data = helper.returnData(rows);
     //console.log(data);
     return {data}
@@ -39,16 +39,15 @@ async function createPost(post) {
 
 //update post
 async function updatePost(id, poste) {
-  if(tokenVerif){
-    const result = await db.query(
-      `UPDATE poste
-      SET title="${poste.title}", contenu=${poste.contenu}, pouce=${poste.pouce}, imagePost=${poste.imagePost}, createdAt=${poste.createdAt}"
-      WHERE id=${id}`
-    );
-    let message = 'Error in updating post';
-    if (result.affectedRows) {
-      message = 'Post updated successfully';
-    }
+    if(tokenVerif){
+      let date= Date();
+      let req = `UPDATE poste SET title=?, contenu=?, pouce=?, imagePost=?, createdAt=? WHERE id=?`;
+      let values = [poste.title, poste.contenu, poste.pouce, poste.imagePost, date, parseInt(id)];
+      const rows = await db.query(req, values);
+      let message = 'Error in updating post';
+      if (rows) {
+        message = 'Post updated successfully';
+      }
     return { message };
   }
 }
@@ -56,10 +55,18 @@ async function updatePost(id, poste) {
 //delete post
 async function removePost(id) {
   if(tokenVerif){
-    const result = await db.query(`DELETE FROM poste WHERE id=${id}`);
-    let message = 'Error in deleting post';
-    if (result.affectedRows) {
-      message = 'Post deleted successfully';
+    let req = `DELETE FROM commentaire WHERE id_1=?`;
+    let values = [id];
+    const rows = await db.query(req, values);
+    if(rows){
+      let req = `DELETE FROM poste WHERE id_1=?`;
+      let values = [id];
+      const rows = await db.query(req, values);
+      message = 'Membre deleted successfully';
+      console.log(message)
+    }else{
+      message = 'Error deleted membre';
+      console.log(message)
     }
     return { message };
   }
