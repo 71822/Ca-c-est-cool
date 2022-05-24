@@ -39,11 +39,13 @@ export class ConnectionComponent implements OnInit {
             localStorage.removeItem('ID');
             localStorage.setItem('ACCESS_TOKEN', ret.message.token);
             localStorage.setItem('id', ret.message.id);
+            console.log(localStorage);
             that.router.navigate([`/user/${ret.message.id}`]);
 
 
-            this.loginService.token = ret.message.token;
-            this.loginService.currentUserId = ret.message.id;
+            // this.loginService.token = ret.message.token;
+            // this.loginService.currentUserId = ret.message.id;
+
 
           }else if(ret.message.pass == false){
             console.log(ret.message);

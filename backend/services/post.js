@@ -6,7 +6,7 @@ const tokenVerif = require('../middlewares/auth');
 //lire la liste des posts
 async function getMultiplePosts() {
   if(tokenVerif){
-    const rows = await db.query(`SELECT title, contenu, pouce, imagePost, createdAt FROM poste ORDER BY id DESC`);
+    const rows = await db.query(`SELECT id, title, contenu, pouce, imagePost, createdAt FROM poste ORDER BY id DESC`);
     const data = helper.returnData(rows);
     return {data}
   }

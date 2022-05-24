@@ -1,77 +1,97 @@
 <div class="containerPrincipal" style="display: flex">
-<div class="box1">
-  <div class="box">
-  <div class="divImg">
-    <img class="img" src="../../assets/img/logo.PNG" alt="">
-  </div>
-  <div class="title">
-    Mon Mur
-  </div>
+  <div class="box1">
+    <div class="box">
 
-  <div class="divLine">
-    <div class="line"></div>
-  </div>
-
-  <div class="divBoxMessage" *ngFor="let post of posts">
-
-    <div class="boxMess">
-
-      <div class="boxPhoto">
-        <img class="imgProfil" src="../../assets/img/chat.jpg" alt="">
+      <div class="divImg">
+        <img class="img" src="../../assets/img/logo.PNG" alt="">
+      </div>
+      <div class="title">
+        Mon Mur
       </div>
 
-      <div class="boxText">
-        <div class="titleMess">
-          {{post.title | titlecase |slice:0:24 }}...
-        </div>
-        <div class="text" id="substr">
-          {{post.contenu|slice:0:50}}...
-        </div>
-
-        <div class="divIcones">
-          <div class="nbComm">
-            <span class="imgCom">
-              <svg width="0.9em" height="0.9em" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 20.2895V5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V15C21 16.1046 20.1046 17 19 17H7.96125C7.35368 17 6.77906 17.2762 6.39951 17.7506L4.06852 20.6643C3.71421 21.1072 3 20.8567 3 20.2895Z" stroke="currentColor" stroke-width="1.5"/>
-                </svg>
-            </span>
-              <span class="com">Comments</span>
-          </div>
-          <div class="nbLike cursor" (click)="functionClick()">
-            <span class="countLike">{{post.pouce}}</span>
-            <span class="imgLike">
-              <svg width="1.1em" height="1.1em" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.4724 20H4.1C3.76863 20 3.5 19.7314 3.5 19.4V9.6C3.5 9.26863 3.76863 9 4.1 9H6.86762C7.57015 9 8.22116 8.6314 8.5826 8.02899L11.293 3.51161C11.8779 2.53688 13.2554 2.44422 13.9655 3.33186C14.3002 3.75025 14.4081 4.30635 14.2541 4.81956L13.2317 8.22759C13.1162 8.61256 13.4045 9 13.8064 9H18.3815C19.7002 9 20.658 10.254 20.311 11.5262L18.4019 18.5262C18.1646 19.3964 17.3743 20 16.4724 20Z" stroke="currentColor"   stroke-linecap="round"/>
-                <path d="M7 20L7 9" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </span>
-
-          </div>
-        </div>
-
+      <div class="divLine">
+        <div class="line"></div>
       </div>
+
+
+    <div class="boxBoxMessage" *ngFor="let post of posts">
+
+    <div class="divBoxMessage">
+
+      <div class="boxMess">
+
+        <div class="boxPhoto">
+          <img class="imgProfil" src="../../assets/img/chat.jpg" alt="">
+        </div>
+
+        <div class="boxText">
+          <div class="titleMess">
+            {{post.title | titlecase |slice:0:24 }}...
+          </div>
+          <div class="text" id="substr">
+            {{post.contenu|slice:0:50}}...
+          </div>
+
+          <div class="divIcones">
+            <div class="nbComm">
+              <span class="imgCom">
+                <svg width="0.9em" height="0.9em" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 20.2895V5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V15C21 16.1046 20.1046 17 19 17H7.96125C7.35368 17 6.77906 17.2762 6.39951 17.7506L4.06852 20.6643C3.71421 21.1072 3 20.8567 3 20.2895Z" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+              </span>
+                <span class="com">Comments</span>
+            </div>
+            <div class="nbLike cursor" (click)="functionClick()">
+              <span class="countLike">{{post.pouce}}</span>
+              <span class="imgLike">
+                <svg width="1.1em" height="1.1em" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.4724 20H4.1C3.76863 20 3.5 19.7314 3.5 19.4V9.6C3.5 9.26863 3.76863 9 4.1 9H6.86762C7.57015 9 8.22116 8.6314 8.5826 8.02899L11.293 3.51161C11.8779 2.53688 13.2554 2.44422 13.9655 3.33186C14.3002 3.75025 14.4081 4.30635 14.2541 4.81956L13.2317 8.22759C13.1162 8.61256 13.4045 9 13.8064 9H18.3815C19.7002 9 20.658 10.254 20.311 11.5262L18.4019 18.5262C18.1646 19.3964 17.3743 20 16.4724 20Z" stroke="currentColor"   stroke-linecap="round"/>
+                  <path d="M7 20L7 9" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+              </span>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="boxFleche">
+        <div (click)="maFonction(post.id)">
+          <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
     </div>
-    <!-- routerLink="{{idPage}}/article{{post.id}}" -->
-    <div class="boxFleche" (click)="changementDePage(post.id)">
-      <div>
-        <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+
     </div>
   </div>
 </div>
-</div>
+
+
+
+
+
+
+
+
+
+
 
 
 
   <div class="box2">
 
-  <div class="artbox">
+  <div class="artbox" *ngFor="let post of posts">
   <div class="artcontainer1">
 
     <div class="artenTete">
-      <div class="artbtn artdate">4 avril 2012</div>
+      <div class="artbtn artdate">
+       <!-- {{post.createdAt|mediumDate}}-->
+        4 avril 2012
+      </div>
       <div class="artbtn artbtnComment">Commenter</div>
     </div>
     <div class="arttitle">

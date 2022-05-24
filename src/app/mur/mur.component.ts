@@ -29,10 +29,12 @@ export class MurComponent implements OnInit {
     this.userService.getPosts().subscribe({
       next(ret) {
         let data;
+        let idPost;
         for(let posts of Object.keys(ret)){
           data = ret[posts];
         }
         that.posts = data;
+
       },
       error(err) {
         console.log(err);
@@ -43,11 +45,10 @@ export class MurComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  maFonction(id:number){
+    console.log(id);
+  }
 
-  @ViewChild("substring") myNameElem: ElementRef;
-
-    // console.log(substring.substr(0[, 100]););
-    // this.myNameElem.nativeElement.innerHTML = "I am changed by ElementRef & ViewChild";
 
  /////////////////A FINIR
  functionClick(){

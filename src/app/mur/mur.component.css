@@ -1,8 +1,8 @@
 .box1{
-  width: 45%;
+  width: 47%;
 }
 .box2{
-  width: 55%;
+  width: 53%;
 }
 
 .box {
@@ -82,12 +82,14 @@
 
 .text {
   color: #686868;
+  height: 45px;
 }
 
 .divIcones {
   color: #979696;
   display: flex;
   margin-top: 10px;
+  height: 20px;
 }
 
 .com {
@@ -107,15 +109,25 @@
 .boxFleche {
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 
 .cursor{
   cursor: pointer;
 }
 
+.visibility{
+  /* visibility: hidden;
+  width: 1px;
+  height: 1px; */
+}
 
-
+.submit{
+  height: 20px;
+  width: 20px;
+  background-color: rgb(229, 229, 229);
+  border: none;
+  font-weight: 800;
+}
 
 
 
