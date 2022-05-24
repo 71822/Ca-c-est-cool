@@ -16,7 +16,9 @@ async function getMultiplePosts() {
 //lire un post
 async function getPost(id) {
   if(tokenVerif){
-    const rows = await db.query(`SELECT title, contenu, pouce, imagePost, createdAt FROM poste WHERE id=${id}`);
+    let req = `SELECT title, contenu, pouce, imagePost, createdAt FROM poste WHERE id=?`;
+    let values = [id];
+    const rows = await db.query(req, values);
     const data = helper.returnData(rows);
     return {data}
   }
@@ -48,8 +50,8 @@ async function updatePost(id, poste) {
       if (rows) {
         message = 'Post updated successfully';
       }
-    return { message };
-  }
+      return { message };
+    }
 }
 
 //delete post

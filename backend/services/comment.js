@@ -14,10 +14,12 @@ async function getMultipleComments() {
 
 //cree un comment
 async function createComment(commentaire) {
-  const result = await db.query(
-    `INSERT INTO commentaire(texte, pouce, createdAt)
-    VALUES(${commentaire.texte}, ${commentaire.pouce}, ${commentaire.createdAt})`
-  );
+  if(tokenVerif){
+    let date= Date();
+    let req = `INSERT INTO commentaire(texte, pouce, createdAt) VALUES(?,?,?)`;
+    let values = [commentaire.texte, commentaire.pouce, date];
+    const result = await db.query(req, values)
+  }
   let message = 'Error in creating comment';
   if (result.affectedRows) {
     message = 'Comment created successfully';
@@ -27,25 +29,31 @@ async function createComment(commentaire) {
 
 //update comment
 async function updateComment(id, commentaire) {
-  const result = await db.query(
-    `UPDATE commentaire SET texte="${commentaire.texte}", pouce=${commentaire.pouce}, createdAt=${commentaire.createdAt}"
-    WHERE id=${id}`
-  );
-  let message = 'Error in updating comment';
-  if (result.affectedRows) {
-    message = 'Comment updated successfully';
+  if(tokenVerif){
+    let date= Date();
+    let req = `UPDATE commentaire SET texte=?, pouce=?, createdAt=? WHERE id=?`;
+    let values = [commentaire.texte, commentaire.pouce, date, parseInt(id)];
+    const rows = await db.query(req, values);
+    let message = 'Error in updating comment';
+    if (rows) {
+      message = 'Comment updated successfully';
+    }
+    return { message };
   }
-  return { message };
 }
 
 //delete comment
 async function removeComment(id) {
-  const result = await db.query(`DELETE FROM commentaire WHERE id=${id}`);
-  let message = 'Error in deleting comment';
-  if (result.affectedRows) {
-    message = 'Comment deleted successfully';
+  if(tokenVerif){
+    let req = `DELETE FROM commentaire WHERE id_1=?`;
+    let values = [id];
+    const rows = await db.query(req, values);
+    if(rows){
+      message = 'Comment deleted successfully';
+      console.log(message);
+    }
+    return { message };
   }
-  return { message };
 }
 
 module.exports = {
