@@ -18,12 +18,10 @@ async function getMultiple() {
 //lire un membre
 async function getMembre(id) {
   if(tokenVerif){
-    let req = `SELECT id, nom, prenom, email, motPasse FROM membre WHERE id=?`;
+    let req = `SELECT id, nom, prenom, email, motPasse, photo FROM membre WHERE id=?`;
     let values = [id];
-    console.log(values);
     const rows = await db.query(req, values);
     const data = helper.returnData(rows);
-    console.log(data);
     return {data}
   }
 }
@@ -32,15 +30,13 @@ async function getMembre(id) {
 //update membre
 async function updateMembre(id, membre) {
   if(tokenVerif){
-    console.log('BACK-SERVICE id :' + id);
-    console.log('BACK-SERVICE membre(data) :' + membre.nom);
     let req = `UPDATE membre SET nom=?, prenom=?, email=?, motPasse=?, photo=? WHERE id=?`;
     let values = [membre.nom, membre.prenom, membre.email, membre.motPasse, membre.photo, parseInt(id)];
-    console.log('VALUES après requête : ' + values);
     const rows = await db.query(req, values);
     let message = 'Error in updating membre';
-    if (result.affectedRows) {
+    if (rows) {
       message = 'Membre updated successfully';
+      console.log(message);
     }
     return { message };
   }

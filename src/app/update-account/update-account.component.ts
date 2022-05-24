@@ -31,7 +31,7 @@ export class UpdateAccountComponent implements OnInit {
       prenom: "" as string,
       email: "" as string,
       motPasse: "" as string,
-      photo: "" as string,
+      photo: "" as string
     });
 
     let that = this;
@@ -60,34 +60,29 @@ export class UpdateAccountComponent implements OnInit {
 
   validForm() {
     let dataUpdate: Users = {
+      id: this.idAcharger,
       nom: this.updateAccount.value.nom,
       prenom: this.updateAccount.value.prenom,
       email: this.updateAccount.value.email,
       motPasse: this.updateAccount.value.motPasse,
-      photo: this.updateAccount.value.photo,
-      id: this.idAcharger
+      photo: this.updateAccount.value.photo
     };
-
-    console.log(dataUpdate);
-
     let that = this;
     this.route.params.subscribe({
       next(val) {
         that.idAcharger = parseInt(val["id"])
-        console.log(that.idAcharger);
       }
     });
     this.userService.updateAccount(that.idAcharger, dataUpdate).
     subscribe(retour => {
       let that = this;
-      let idPage = 0;
-      this.route.params.subscribe({
+      that.route.params.subscribe({
         next(val) {
           that.idAcharger = parseInt(val["id"])
-          idPage = that.idAcharger;
+          that.router.navigate([`/user/${that.idAcharger}`]);
         }
       });
-      this.router.navigate([`/user/${idPage}`]);});
+    });
   }
 
   ngOnInit(): void {
