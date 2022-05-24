@@ -5,11 +5,11 @@
     <form [formGroup]="updateAccount"  (ngSubmit)="validForm()">
       <div *ngFor="let value of user">
         <div>
-          <div><input type="text" [value]="value.nom" placeholder="nom" formControlName="value.nom"></div>
-          <div><input type="text" [value]="value.prenom" placeholder="Prenom" formControlName="value.prenom"></div>
-          <div><input type="text" [value]="value.email" placeholder="email" formControlName="value.email"></div>
-          <div><input type="text" [value]="value.motPasse" placeholder="motPasse" formControlName="value.motPasse"></div>
-          <div><input type="text" [value]="value.photo" placeholder="photo" formControlName="value.photo"></div>
+          <div><input type="text" [value]="value.nom" placeholder="nom" formControlName="nom"></div>
+          <div><input type="text" [value]="value.prenom" placeholder="Prenom" formControlName="prenom"></div>
+          <div><input type="text" [value]="value.email" placeholder="email" formControlName="email"></div>
+          <div><input type="text" [value]="value.motPasse" placeholder="motPasse" formControlName="motPasse"></div>
+          <div><input type="text" [value]="value.photo" placeholder="photo" formControlName="photo"></div>
           <div><input class="submit" type="submit" value="Modifier"></div>
         </div>
       </div>

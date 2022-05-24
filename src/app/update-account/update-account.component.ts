@@ -106,7 +106,7 @@ export class UpdateAccountComponent implements OnInit {
           data = ret[use];
         }
         that.user = data;
-        that.updateAccount.sethValue({
+        that.updateAccount.setValue({
           nom:that.user.nom,
           prenom:that.user.prenom,
           email:that.user.email,

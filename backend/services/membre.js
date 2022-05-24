@@ -33,7 +33,7 @@ async function getMembre(id) {
 async function updateMembre(id, membre) {
   if(tokenVerif){
     console.log('BACK-SERVICE id :' + id);
-    console.log('BACK-SERVICE membre(data) :' + membre);
+    console.log('BACK-SERVICE membre(data) :' + membre.nom);
     let req = `UPDATE membre SET nom=?, prenom=?, email=?, motPasse=?, photo=? WHERE id=?`;
     let values = [membre.nom, membre.prenom, membre.email, membre.motPasse, membre.photo, parseInt(id)];
     console.log('VALUES après requête : ' + values);

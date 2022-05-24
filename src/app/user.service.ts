@@ -76,7 +76,7 @@ export class UserService {
 
   updateAccount(id:any, data:any):Observable<any>{
     console.log('USER-SERVICE updateAccount - upUser : '+id);
-    console.log('USER-SERVICE updateAccount - upUser.id : '+data);
+    console.log('USER-SERVICE updateAccount - upUser.nom : '+data.nom);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.token}`
