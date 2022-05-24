@@ -5,13 +5,18 @@
 .box1 {
   width: 30%;
   background-color: rgb(214, 235, 252);
+  position: sticky;
 }
 
-.box2 {
+/* .box2 {
   width: 40%;
   background-color: rgb(229, 229, 229);
-}
+} */
 
-.box3 {
+/* .box3 {
   width: 50%;
+} */
+.box2 {
+  width: 70%;
+  background-color: rgb(229, 229, 229);
 }

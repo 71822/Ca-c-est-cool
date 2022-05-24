@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthentificationService } from '../authentification.service';
 import { Posts } from '../classes/post';
@@ -12,6 +12,7 @@ import { UserService } from '../user.service';
   styleUrls: ['./mur.component.css']
 })
 export class MurComponent implements OnInit {
+  id:string;
   idAcharger: number = 0;
   posts: Array<Posts> = [];
 
@@ -42,10 +43,11 @@ export class MurComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  changementDePage = function () {
-    this.router.navigate(['/user/']);
- };
 
+  @ViewChild("substring") myNameElem: ElementRef;
+
+    // console.log(substring.substr(0[, 100]););
+    // this.myNameElem.nativeElement.innerHTML = "I am changed by ElementRef & ViewChild";
 
  /////////////////A FINIR
  functionClick(){

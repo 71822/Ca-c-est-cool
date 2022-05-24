@@ -8,7 +8,6 @@ async function getMultiplePosts() {
   if(tokenVerif){
     const rows = await db.query(`SELECT title, contenu, pouce, imagePost, createdAt FROM poste ORDER BY id DESC`);
     const data = helper.returnData(rows);
-    //console.log(data);
     return {data}
   }
 }

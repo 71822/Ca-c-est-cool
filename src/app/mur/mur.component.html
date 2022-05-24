@@ -1,4 +1,6 @@
-<div class="box">
+<div class="containerPrincipal" style="display: flex">
+<div class="box1">
+  <div class="box">
   <div class="divImg">
     <img class="img" src="../../assets/img/logo.PNG" alt="">
   </div>
@@ -20,10 +22,10 @@
 
       <div class="boxText">
         <div class="titleMess">
-          {{post.title}}
+          {{post.title | titlecase |slice:0:24 }}...
         </div>
-        <div class="text">
-          {{post.contenu}}
+        <div class="text" id="substr">
+          {{post.contenu|slice:0:50}}...
         </div>
 
         <div class="divIcones">
@@ -50,7 +52,7 @@
       </div>
     </div>
     <!-- routerLink="{{idPage}}/article{{post.id}}" -->
-    <div class="boxFleche" (click)="changementDePage()">
+    <div class="boxFleche" (click)="changementDePage(post.id)">
       <div>
         <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -58,4 +60,68 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+
+
+
+  <div class="box2">
+
+  <div class="artbox">
+  <div class="artcontainer1">
+
+    <div class="artenTete">
+      <div class="artbtn artdate">4 avril 2012</div>
+      <div class="artbtn artbtnComment">Commenter</div>
+    </div>
+    <div class="arttitle">
+      Titre
+    </div>
+    <div class="artname">
+      <span>Par</span><span class="artnom">Name</span>
+      <span>Surname</span>
+    </div>
+    <div class="artnbLike">
+      12 likes
+    </div>
+    <div class="artline"></div>
+    <div class="artboxImg">
+      <img class="artimgArticle" src="../../assets/img/chat.jpg" alt="">
+    </div>
+    <div class="arttext">Du texte et encore du text et du texte et blablabla, du texte et encore du text et du texte et blablabla, du texte et encore du text et du texte et blablabla, du texte et encore du text et du texte et blablabla, du texte et encore du text et du texte et blablabla...
+    </div>
+    <div class="artline"></div>
+    <div class="artcontainerComment">
+      <div class="artboxComment">
+
+        <div class="artboxProfil">
+          <div class="artdivProfil">
+            <img class="artimgProfil" src="../../assets/img/chat.jpg" alt="">
+          </div>
+          <div class="artheureComment">12h00</div>
+          <div class="artdateComment">21/12/2012</div>
+        </div>
+
+        <div class="artboxText">
+          <div class="arttitleComment">Titre</div>
+          <div class="artmess">Du texte et encore du text et du texte et blablabla, du texte et encore du text et du texte et blablabla, du texte et encore du text et du texte et blablabla, du texte et encore du text et du texte et blablabla, du texte et encore du text et du texte et blablabla...</div>
+        </div>
+      </div>
+    </div>
+    <form action="">
+      <textarea class="arttextarea" name="" id=""></textarea>
+      <div class="artboxEnvoi">
+        <div class="artbtnSubmit"><svg width="20" height="20" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg></div>
+          <div class="envoi">envoyer</div>
+      </div>
+    </form>
+  </div>
+  <div class="artcontainer2"></div>
+
+
+</div>
+</div>
+
 </div>

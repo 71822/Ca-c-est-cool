@@ -9,13 +9,14 @@ import { AddPostComponent } from './add-post/add-post.component';
 
 const routes: Routes = [
 
-  { path: "", component: Component },
+  //{ path: "", component: Component },
   { path: "inscription", component: InscriptionComponent },
   { path: "connection", component: ConnectionComponent },
   { path: "user/:id", component: UserComponent, canActivate:[AuthentificationGuard]},
   { path: "user/updateAccount/:id", component: UpdateAccountComponent, canActivate:[AuthentificationGuard]},
-  { path: "user/addPost/:id", component: AddPostComponent, canActivate:[AuthentificationGuard]}
-
+  { path: "user/addPost/:id", component: AddPostComponent, canActivate:[AuthentificationGuard]},
+  { path: "user/:id/:id", component: AddPostComponent, canActivate:[AuthentificationGuard]},
+  { path: '', redirectTo:'inscription', pathMatch: 'full'}
   // {path:'home', component:HomeComponent, canActivate:[AuthGuardService]},
   // {path:'', redirectTo:'login', pathMatch: 'full'},
 
