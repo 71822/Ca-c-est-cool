@@ -18,8 +18,10 @@ router.get('/multiplePosts', async function (req, res, next) {
 router.get('/post/:id', async function (req, res, next) {
   try {
     res.json(await post.getPost(req.params.id));
+    console.log();
   } catch (err) {
     console.error(`Error while get post`, err.message);
+    console.log(err);
     next(err);
   }
 });

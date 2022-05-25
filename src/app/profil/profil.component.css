@@ -1,10 +1,11 @@
 .box {
   margin: 0;
   padding: 0;
-  max-height: 100vh !important;
+  background-color: rgb(214, 235, 252);
+  min-height: 100vh !important;
   position: sticky;
   top: 0px;
-  background-color: rgb(214, 235, 252);
+
 }
 
 .divPhoto {

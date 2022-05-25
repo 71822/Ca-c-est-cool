@@ -84,12 +84,6 @@ export class UserService {
     return this.http.put(this.urlBase + "/membreUpdate/" + id, data, {headers:headers});
   }
 
-  getArticle(id:number):Observable<any>{
-    console.log('FONCTION GETARTICLE : ' + id);
-      return this.http.get(this.urlBase + "/article/"+id);
-  }
-
-
   getPosts(): Observable<Array<Posts>>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -99,8 +93,12 @@ export class UserService {
   }
 
   getPost(id:number):Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authentificationService.tokenValue()}`
+    })
     console.log('FONCTION GETPOST : ' + id);
-      return this.http.get(this.urlBase + "/post/"+id);
+      return this.http.get(this.urlBase + "/post/"+id, {headers:headers});
   }
 
 

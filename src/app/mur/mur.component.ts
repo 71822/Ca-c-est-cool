@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthentificationService } from '../authentification.service';
-import { Posts } from '../classes/post';
-import { User } from '../user';
+import { Post } from '../post';
 import { UserService } from '../user.service';
 
 @Component({
@@ -14,8 +12,10 @@ import { UserService } from '../user.service';
 export class MurComponent implements OnInit {
   id:string;
   idAcharger: number = 0;
-  posts: Array<Posts> = [];
-
+  posts: Array<Post> = [];
+  postById: Array<Post> = [];
+  userId?:number;
+  idItem:number;
   constructor(private userService: UserService, private route: ActivatedRoute, public auth: AuthentificationService) {
     let that = this;
     let idPage = 0;
@@ -29,12 +29,11 @@ export class MurComponent implements OnInit {
     this.userService.getPosts().subscribe({
       next(ret) {
         let data;
-        let idPost;
         for(let posts of Object.keys(ret)){
           data = ret[posts];
         }
         that.posts = data;
-
+        that.userId = idPage;
       },
       error(err) {
         console.log(err);
@@ -45,27 +44,25 @@ export class MurComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  maFonction(id:number){
-    console.log(id);
+  postByIb(id:number){
+    this.idItem=id;
   }
 
 
  /////////////////A FINIR
  functionClick(){
-  let that = this;
-  let idPage = 0;
-  this.route.params.subscribe({
-    next(val) {
-      that.idAcharger = parseInt(val["id"])
-      idPage = that.idAcharger;
-    }
-  });
-
-   if(idPage == localStorage["id"]){
-    console.log(idPage);
-    let clickNo = true;
-   }else if(idPage != localStorage["id"]){
-     //this.auth.updatePost();
-   }
+//   let that = this;
+//   this.userService.updatePost(id, data).subscribe({
+//     next(ret) {
+//       let data;
+//       for(let posts of Object.keys(ret)){
+//         data = ret[posts];
+//       }
+//       that.posts = data;
+//     },
+//     error(err) {
+//       console.log(err);
+//     }
+//   });
  }
 }
