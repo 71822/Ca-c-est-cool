@@ -6,12 +6,14 @@ const tokenVerif = require('../middlewares/auth');
 //lire la liste des posts
 async function getMultiplePosts() {
   if(tokenVerif){
+    //SELECT poste.id, poste.title, poste.contenu, poste.pouce, poste.imagePost, poste.createdAt, poste.id_1, membre.nom, membre.prenom FROM poste, membre ORDER BY poste.id DESC
     const rows = await db.query(`SELECT id, title, contenu, pouce, imagePost, createdAt, id_1 FROM poste ORDER BY id DESC`);
     const data = helper.returnData(rows);
     console.log(data);
     return {data}
   }
 }
+
 
 //lire un post
 async function getPost(id) {

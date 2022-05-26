@@ -14,6 +14,7 @@ import { Posts } from './classes/post';
 export class UserService {
   users: Users[];
   posts: Posts[];
+  comments: Comment[];
   token:string ="";
   // currentUserId:number = -1;
 
@@ -26,11 +27,6 @@ export class UserService {
 
 
   constructor(private http: HttpClient, private authentificationService: AuthentificationService) { }
-
-  // isCurrentUserId(id:number):boolean{
-  //   return this.currentUserId == id;
-  // }
-
 
   connection(data: User) {
     return this.http.post(this.urlBase + "/signin", data, this.httpOptions)
@@ -45,6 +41,24 @@ export class UserService {
         catchError(this.handleError)
       )
   }
+
+  getComment(id:number):Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authentificationService.tokenValue()}`
+    })
+    console.log('FONCTION GETCOMMENT : ' + id);
+      return this.http.get(this.urlBase + "/comment/"+id, {headers:headers});
+  }
+
+  getComments(): Observable<Array<Comment>> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authentificationService.tokenValue()}`
+    })
+    return this.http.get<Array<Comment>>(this.urlBase + '/multipleComments', {headers:headers});
+  }
+
 
   addPost(data: Posts) {
     const headers = new HttpHeaders({
@@ -75,8 +89,8 @@ export class UserService {
   }
 
   updateAccount(id:any, data:any):Observable<any>{
-    console.log('USER-SERVICE updateAccount - upUser : '+id);
-    console.log('USER-SERVICE updateAccount - upUser.nom : '+data.nom);
+    // console.log('USER-SERVICE updateAccount - upUser : '+id);
+    // console.log('USER-SERVICE updateAccount - upUser.nom : '+data.nom);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.token}`
@@ -111,7 +125,7 @@ export class UserService {
   }
 
   getUser(id:number):Observable<any>{
-  console.log('FONCTION GETUSER : ' + id);
+  // console.log('FONCTION GETUSER : ' + id);
     return this.http.get(this.urlBase + "/membre/"+id);
   }
 

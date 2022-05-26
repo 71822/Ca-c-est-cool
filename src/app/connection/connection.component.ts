@@ -43,10 +43,6 @@ export class ConnectionComponent implements OnInit {
             that.router.navigate([`/user/${ret.message.id}`]);
 
 
-            // this.loginService.token = ret.message.token;
-            // this.loginService.currentUserId = ret.message.id;
-
-
           }else if(ret.message.pass == false){
             console.log(ret.message);
           }

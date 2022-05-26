@@ -85,62 +85,40 @@
 
 <div class="box2">
   <div class="artbox" *ngIf="postById">
-    <div class="artcontainer1"><!--////////////////BOUCLE *ngFor="let postByIdResult of postById"////////////////////////////////////-->
-      <div *ngFor="let postByIdResult of posts">
+    <div class="artcontainer1">
+
+      <ng-container *ngFor="let postByIdResult of posts; let x = index;">
         <div class="arttext" *ngIf="idItem==postByIdResult.id">
-        <div class="artenTete">
-          <div class="artbtn artdate">
-            4 avril 2012
-          </div>
-          <div class="artbtn artbtnComment">Commenter</div>
-        </div>
-        <div class="arttitle">
-        </div>
-        <div class="artname">
-          <span>Par</span><span class="artnom">{{postByIdResult.nom}}</span>
-          <span>{{postByIdResult.prenom}}</span>
-        </div>
-        <div class="artnbLike">
-          {{postByIdResult.pouce}} likes
-        </div>
-        <div class="artline"></div>
-        <div class="artboxImg">
-          <img class="artimgArticle" src="../../assets/img/chat.jpg" alt="">
-        </div>
-        <div>
-            {{postByIdResult.contenu}}
-        </div>
-        <div class="artline"></div>
-        <div class="artcontainerComment">
-          <div class="artboxComment">
-            <div class="artboxProfil">
-              <div class="artdivProfil">
-                <img class="artimgProfil" src="../../assets/img/chat.jpg" alt="">
-              </div>
-              <div class="artheureComment">12h00</div>
-              <div class="artdateComment">21/12/2012</div>
-            </div>
 
-            <div class="artboxText">
-              <div class="arttitleComment">{{postByIdResult.title}}</div>
-              <div class="artmess">
-                {{postByIdResult.contenu}}</div>
-              </div>
+          <div class="artenTete">
+            <div class="artbtn artdate">
+             4 avril 2012
             </div>
-
-            <form action="">
-              <textarea class="arttextarea" name="" id=""></textarea>
-              <div class="artboxEnvoi">
-                <div class="artbtnSubmit">
-                  <svg width="20" height="20" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg></div>
-                <div class="envoi">envoyer</div>
-              </div>
-            </form>
-            </div>
+           <div class="artbtn artbtnComment">Commenter</div>
           </div>
+          <div class="arttitle">
+            {{postByIdResult.title}}
+          </div>
+          <div class="artnbLike">
+            {{postByIdResult.pouce}} likes
+          </div>
+          <div class="artboxImg">
+            <img class="artimgArticle" src="../../assets/img/chat.jpg" alt="">
+          </div>
+          <div>
+              {{postByIdResult.contenu}}
+          </div>
+          <div class="artline"></div>
+
+
+<app-comments></app-comments>
+
         </div>
+      </ng-container>
+
+
+
+
     </div>
   </div>
 </div>

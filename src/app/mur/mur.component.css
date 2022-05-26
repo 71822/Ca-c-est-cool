@@ -196,11 +196,12 @@
 
 .artline {
   border-bottom: 0.1em solid rgb(243, 239, 239);
-  margin-bottom: 2.5em;
+  margin: 30px 0;
 }
 
 .artboxImg {
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .artimgArticle {
@@ -209,83 +210,10 @@
 }
 
 .arttext {
-  margin: 2.5em 0;
   color: rgb(75, 75, 75);
 }
 
-.artboxComment {
-  display: flex;
-  margin-bottom: 2.5em;
-}
 
-.artboxProfil {
-  text-align: center;
-  align-items: center;
-}
-
-.artboxText {
-  padding: 1.3em;
-  background-color: rgb(211, 210, 210);
-  border-radius: 30px;
-  color: rgb(89, 95, 99);
-}
-
-.arttitleComment {
-  color: rgb(61, 65, 68);
-  margin-bottom: 10px;
-  font-weight: 700;
-  font-size: 1em;
-}
-
-.artheureComment {
-  color: gray;
-  font-size: 0.7em;
-}
-
-.artdateComment {
-  color: gray;
-  font-style: italic;
-  font-size: 0.5em;
-}
-
-.artimgProfil {
-  width: 2.7em;
-  height: 2.7em;
-  border-radius: 50%;
-  margin: 0.8em;
-}
-
-.arttextarea {
-  width: 100%;
-  height: 8em;
-  border-radius: 25px;
-  background-color: rgb(241, 241, 243);
-  border-color: white;
-  padding: 1.2em;
-  color: rgb(180, 180, 180);
-}
-
-.artbtnSubmit {
-  width: 20px;
-  height: 22px;
-  border-radius: 35px;
-  background-color: rgb(10, 122, 250);
-  color: white;
-  padding-left: 2px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.artenvoi{
-  padding: 0 5px;
-}
-.artboxEnvoi {
-  width: 100%;
-  display: flex;
-  color: rgb(72, 72, 253);
-  flex-direction: row-reverse;
-}
 
 .artcontainer2 {
   width: 3%;

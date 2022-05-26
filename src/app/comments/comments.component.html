@@ -1,0 +1,38 @@
+<div class="artcontainerComment" *ngFor="let comment of comments">
+  <div class="artboxComment" *ngIf="id==comment.id_2">
+    <div class="artboxProfil">
+      <div class="artdivProfil">
+        <img class="artimgProfil" src="../../assets/img/chat.jpg" alt="">
+      </div>
+      <div class="artheureComment">12h00</div>
+      <div class="artdateComment"></div><!--{{comment.createdAt}}-->
+    </div>
+
+    <div class="artboxText">
+      <div class="arttitleComment"></div>
+      <div class="artmess">{{comment.texte}}</div><!--{{comment.text}}-->
+    </div>
+  </div>
+  <form action="">
+    <textarea class="arttextarea1" name="" id=""></textarea>
+    <div class="artboxEnvoi">
+      <div class="artbtnSubmit">
+        <svg width="20" height="20" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    <div class="envoi">envoyer</div>
+  </div>
+  </form>
+</div>
+<form action="">
+  <textarea class="arttextarea" name="" id=""></textarea>
+  <div class="artboxEnvoi">
+    <div class="artbtnSubmit">
+      <svg width="20" height="20" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  <div class="envoi">envoyer</div>
+</div>
+</form>

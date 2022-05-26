@@ -1,7 +1,19 @@
 const db = require('./db');
 const helper = require('../helper');
+const tokenVerif = require('../middlewares/auth');
 
-
+//Comment by id_2(id post)
+async function getComment(id) {
+  console.log(id);
+  if(tokenVerif){
+    let req = `SELECT id, texte, pouce, createdAt, id_1, id_2 FROM commentaire WHERE id_2=?`;
+    let values = [id];
+    const rows = await db.query(req, values);
+    const data = helper.returnData(rows);
+    console.log(data);
+    return {data}
+  }
+}
 
 //lire la liste des comments
 async function getMultipleComments() {
@@ -57,6 +69,7 @@ async function removeComment(id) {
 }
 
 module.exports = {
+  getComment,
   getMultipleComments,
   createComment,
   updateComment,

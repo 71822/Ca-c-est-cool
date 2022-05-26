@@ -9,10 +9,13 @@ import { UserService } from '../user.service';
   templateUrl: './mur.component.html',
   styleUrls: ['./mur.component.css']
 })
+
+
 export class MurComponent implements OnInit {
   id:string;
   idAcharger: number = 0;
   posts: Array<Post> = [];
+  comments: Array<Comment> = [];
   postById: Array<Post> = [];
   userId?:number;
   idItem:number;
@@ -44,8 +47,12 @@ export class MurComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  postByIb(id:number){
+  postByIb(id){
     this.idItem=id;
+    console.log(id);
+    localStorage.removeItem('idPostClic');
+    localStorage.setItem('idPostClic', id);
+    console.log(localStorage);
   }
 
 
